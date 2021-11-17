@@ -30,16 +30,20 @@ export default () => {
       <Script
         src="https://unpkg.com/chai/chai.js"
         strategy="beforeInteractive"
-      ></Script>
+      />
       <Script
         strategy="beforeInteractive"
         src="https://unpkg.com/mocha/mocha.js"
-      ></Script>
+      />
       <div>min-cypress runs here</div>
       <div id="mocha"></div>
       <button
         onClick={() => {
-          mocha.run();
+          try {
+            mocha.cleanReferencesAfterRun(false).run();
+          } catch (e) {
+            console.log(e);
+          }
         }}
       >
         run test
